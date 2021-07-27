@@ -1,0 +1,33 @@
+<template>
+    <lightning-card title="Salesforce Maintenance Status">
+        <lightning-button variant="brand" label="Get Status" onclick={buttonClickHandler} class="slds-m-left_x-small"></lightning-button>
+        <lightning-layout>
+            <lightning-layout-item padding="around-medium" size="6">
+                <div if:true={isButtonClicked}>
+                    <ul>
+                        <template for:each={maintList} for:item="maint">
+                            <li key={maint.id} style="padding: 10px">
+                                 <div class="slds-p-around_medium lgc-bg">
+                                        <lightning-tile label={maint.id} type="media" href="javascript:void(0);" onclick={tileClickHandler}>
+                                            <lightning-icon slot="media" icon-name="standard:orders"></lightning-icon>
+                                            <p class="slds-truncate" title={maint.name}>{maint.name}</p>
+                                          </lightning-tile>
+                                    </div>                           
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-medium" size="6">
+                <div if:true={isTileClicked}>
+                
+                   <p><b>{selecteditem.name} ({selecteditem.id})</b></p></br>
+                   <p><b>Maintenance Type :</b> {selecteditem.maintenanceType}</p></br>
+                   <p><b>Additional Information :</b> {selecteditem.additionalInformation}</p></br>
+                </div>
+                
+            </lightning-layout-item>
+        </lightning-layout>
+        
+    </lightning-card>
+</template>
